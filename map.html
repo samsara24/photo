@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>藏藏和景景2025年开学后的游玩记录</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- 引入 Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+    #map {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <!-- 引入 Leaflet JS（移除了 integrity 和 crossorigin 属性） -->
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+  <script>
+    // 初始化地图，设置中心点和缩放级别（根据实际情况调整）
+    var map = L.map('map').setView([39.1, 117.23], 12);
+
+    // 添加 OpenStreetMap 图层
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+
+    // 标注数据（坐标为近似值，可根据实际情况调整）
+    var markers = [
+      {
+        name: "天津市和平大悦城",
+        coords: [39.12366462617459, 117.20461819709466]
+      },
+      {
+        name: "天津市天津南站",
+        coords: [39.06024592499862, 117.05913222992066],
+      },
+      {
+        name: "桔子天津西青大学城迎水道酒店",
+        coords: [39.087315639643016, 117.12294093639707]
+      },
+      {
+        name: "天津市大港万达广场",
+        coords: [38.85263158170747, 117.51163808988674]
+      }
+    ];
+
+    // 循环添加标注到地图，并绑定弹出信息
+    markers.forEach(function(marker) {
+      L.marker(marker.coords).addTo(map)
+        .bindPopup(marker.name);
+    });
+  </script>
+</body>
+</html>
